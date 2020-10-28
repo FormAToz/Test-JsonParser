@@ -1,6 +1,7 @@
 package payload;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Класс содержит все полеты
@@ -10,6 +11,21 @@ public class Airport {
 
     public List<Flight> getFlights() {
         return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
+    }
+
+    /**
+     * Метод фильтрации вылетов по вылету и прилету
+     * @param departureCity город вылета
+     * @param arrivalCity город прилета
+     */
+    public List<Flight> filterFlights(String departureCity, String arrivalCity) {
+        return flights.stream()
+                .filter(el -> el.getFromCity().equalsIgnoreCase(departureCity) && el.getToCity().equalsIgnoreCase(arrivalCity))
+                .collect(Collectors.toList());
     }
 
     /**

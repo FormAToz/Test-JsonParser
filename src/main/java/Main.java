@@ -13,10 +13,14 @@ public class Main {
             "avg - средняя стоимость перелетов\n" +
             "exit - выход из программы\n";
     private static final String INCORRECT_INPUT_COMMAND = "Вы ввели неверную команду. Попробуйте еще раз.\n";
+    private static final String DEPARTURE_CITY = "Москва";
+    private static final String ARRIVAL_CITY = "Хабаровск";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Airport airport = getAirport();
+
+        airport.setFlights(airport.filterFlights(DEPARTURE_CITY, ARRIVAL_CITY));
 
         if (airport.haveNoFlights()) {
             System.out.println("Не найдено ни одного перелета! Выход из программы...");
